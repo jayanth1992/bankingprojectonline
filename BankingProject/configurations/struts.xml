@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="loginpage" namespace="/" extends="hibernate-default">
+						
+						<!-- Login Action -->
+		<action name="login" method="authenticate" class="com.action.LoginAction">
+			<result name="acc" type="redirectAction">
+				<param name="actionName">accountSummary</param>
+			</result>
+			<result name="trans">/WEB-INF/Transfers.jsp</result>
+			<result name="error">/Login.jsp</result>
+			<result name="input">/Login.jsp</result>
+		</action>
+		
+							<!-- Account Activity -->
+		<action name="accountActivity" method="authenticate" class="com.action.Authentication">
+			<result name="success">/WEB-INF/AccountActivity.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+							<!-- Account Summary -->		
+		<action name="accountSummary" method="fetchDetails" class="com.action.AccountSummaryAction">
+			<result name="success">/WEB-INF/AccountSummary.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+
+							<!-- Transfers -->		
+		<action name="transfers" method="authenticate" class="com.action.Authentication">
+			<result name="success">/WEB-INF/Transfers.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+		
+							<!-- Transfers Action -->
+		<action name="transferAction" method="transfer" class="com.action.TransferAction">
+			<result name="success">/WEB-INF/TransferSuccess.jsp</result>
+			<result name="error">/WEB-INF/TransferError.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+		
+							<!-- Update Info -->
+		<action name="updateInfo" method="getUserInfo" class="com.action.UpdateAction">
+			<result name="success">/WEB-INF/Update.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+		
+						<!-- Update Info On Click -->					
+		<action name="updateInfoOnClick" method="updateInformation" class="com.action.UpdateAction">
+			<result name="success">/WEB-INF/UpdateSuccessful.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+		
+						<!-- Sign Off -->
+		<action name="signoff" method="execute" class="com.action.SignOffAction">
+			<result name="success">/Login.jsp</result>
+			<result name="login">/Login.jsp</result>
+		</action>
+	</package>
+					
+					<!-- Transactions -->
+	<package name="transactions" namespace="/accountActivity"  extends="json-default,hibernate-default">
+		<action name="getTransactions" method="getTransactions" class="com.action.AccountActivityAction">
+			<result type="json" ></result>
+			<result name="login">/Login.jsp</result>
+		</action>
+	</package>
+	
+</struts>
