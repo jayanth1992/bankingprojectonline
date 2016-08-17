@@ -14,6 +14,7 @@ Technologies used in Project are:
 -JSON data format
 And database used for storing data : MySQL 5.5
 
+The Screen Caps of the project are also attached. Please check it out.
 
 
 
